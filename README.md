@@ -36,7 +36,7 @@ send some requests in JSON format.
 
 ## License
 
-This project is MIT licensed, you can read the license here.
+This project is MIT licensed, you can read the license [here](./LICENSE).
 
 ## Contact
 
