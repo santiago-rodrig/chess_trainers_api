@@ -1,7 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+bob:
+  name: 'bob'
+  token: <%= Digest::SHA2.hexdigest('bob') %>
 
-two:
-  name: MyString
+
+susan:
+  name: 'susan'
+  token: <%= Digest::SHA2.hexdigest('susan') %>
