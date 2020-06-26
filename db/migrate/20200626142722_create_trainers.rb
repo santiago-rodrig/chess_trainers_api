@@ -7,6 +7,7 @@ class CreateTrainers < ActiveRecord::Migration[6.0]
       t.string :calendar_url
       t.string :location_url
       t.text :description
+      t.string :email
 
       t.timestamps
     end
@@ -17,6 +18,7 @@ class CreateTrainers < ActiveRecord::Migration[6.0]
         events_won: 8,
         calendar_url: 'https://google.com',
         location_url: 'https://google.com',
+        email: 'santo1996.29@gmail.com',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       },
       {
@@ -25,6 +27,7 @@ class CreateTrainers < ActiveRecord::Migration[6.0]
         events_won: 4,
         calendar_url: 'https://google.com',
         location_url: 'https://google.com',
+        email: 'santo1996.29@gmail.com',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       },
       {
@@ -33,6 +36,7 @@ class CreateTrainers < ActiveRecord::Migration[6.0]
         events_won: 5,
         calendar_url: 'https://google.com',
         location_url: 'https://google.com',
+        email: 'santo1996.29@gmail.com',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       },
       {
@@ -41,6 +45,7 @@ class CreateTrainers < ActiveRecord::Migration[6.0]
         events_won: 2,
         calendar_url: 'https://google.com',
         location_url: 'https://google.com',
+        email: 'santo1996.29@gmail.com',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
       }
     ])

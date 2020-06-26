@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_06_26_142722) do
     t.string "calendar_url"
     t.string "location_url"
     t.text "description"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["expertise_id"], name: "index_trainers_on_expertise_id"
