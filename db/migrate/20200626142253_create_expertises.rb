@@ -5,10 +5,5 @@ class CreateExpertises < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    Expertise.create([
-      { name: 'expert' },
-      { name: 'intermediate' },
-      { name: 'amateur' }
-    ])
   end
 end

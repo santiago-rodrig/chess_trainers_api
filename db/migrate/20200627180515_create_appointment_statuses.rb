@@ -5,10 +5,5 @@ class CreateAppointmentStatuses < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    AppointmentStatus.create([
-      { name: 'success' },
-      { name: 'fail' },
-      { name: 'pending' }
-    ])
   end
 end
