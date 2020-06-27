@@ -59,6 +59,7 @@ Trainer.create([
 ])
 Appointment.create([
   { trainer: Trainer.first, appointment_status: AppointmentStatus.find_by(name: 'pending') },
+  { trainer: Trainer.first, appointment_status: AppointmentStatus.find_by(name: 'pending') },
   { trainer: Trainer.offset(1).first, appointment_status: AppointmentStatus.find_by(name: 'fail') },
   { trainer: Trainer.offset(2).first, appointment_status: AppointmentStatus.find_by(name: 'success') },
   { trainer: Trainer.last, appointment_status: AppointmentStatus.find_by(name: 'pending') }
