@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_180515) do
+ActiveRecord::Schema.define(version: 2020_06_27_180704) do
 
   create_table "appointment_statuses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "trainer_id", null: false
+    t.integer "appointment_status_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["appointment_status_id"], name: "index_appointments_on_appointment_status_id"
+    t.index ["trainer_id"], name: "index_appointments_on_trainer_id"
   end
 
   create_table "expertises", force: :cascade do |t|
@@ -37,5 +46,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_180515) do
     t.index ["expertise_id"], name: "index_trainers_on_expertise_id"
   end
 
+  add_foreign_key "appointments", "appointment_statuses"
+  add_foreign_key "appointments", "trainers"
   add_foreign_key "trainers", "expertises"
 end
