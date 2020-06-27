@@ -1,0 +1,2 @@
+class AppointmentStatus < ApplicationRecord
+end
