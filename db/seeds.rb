@@ -57,10 +57,13 @@ Trainer.create([
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
   }
 ])
+
+user = User.create(name: 'bob', password: '123456', password_confirmation: '123456')
+
 Appointment.create([
-  { trainer: Trainer.first, appointment_status: AppointmentStatus.find_by(name: 'pending') },
-  { trainer: Trainer.first, appointment_status: AppointmentStatus.find_by(name: 'pending') },
-  { trainer: Trainer.offset(1).first, appointment_status: AppointmentStatus.find_by(name: 'fail') },
-  { trainer: Trainer.offset(2).first, appointment_status: AppointmentStatus.find_by(name: 'success') },
-  { trainer: Trainer.last, appointment_status: AppointmentStatus.find_by(name: 'pending') }
+  { trainer: Trainer.first, appointment_status: AppointmentStatus.find_by(name: 'pending'), user: user },
+  { trainer: Trainer.first, appointment_status: AppointmentStatus.find_by(name: 'pending'), user: user },
+  { trainer: Trainer.offset(1).first, appointment_status: AppointmentStatus.find_by(name: 'fail'), user: user },
+  { trainer: Trainer.offset(2).first, appointment_status: AppointmentStatus.find_by(name: 'success'), user: user },
+  { trainer: Trainer.last, appointment_status: AppointmentStatus.find_by(name: 'pending'), user: user }
 ]);
