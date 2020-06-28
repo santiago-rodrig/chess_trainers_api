@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     if user.authenticate(login_params[:password])
       token = Digest::SHA2.hexdigest(user.name.split('').shuffle.join(''))
       user.token = token
+      TokenCleanupJob.set(wait: 1.minute).perform_later(user)
       render json: { token: token }, status: :ok
     else
       head :unauthorized
