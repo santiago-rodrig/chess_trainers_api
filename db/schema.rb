@@ -10,13 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_172416) do
+ActiveRecord::Schema.define(version: 2020_06_27_180704) do
 
-  create_table "users", force: :cascade do |t|
+  create_table "appointment_statuses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "token", null: false
   end
 
+  create_table "appointments", force: :cascade do |t|
+    t.integer "trainer_id", null: false
+    t.integer "appointment_status_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["appointment_status_id"], name: "index_appointments_on_appointment_status_id"
+    t.index ["trainer_id"], name: "index_appointments_on_trainer_id"
+  end
+
+  create_table "expertises", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trainers", force: :cascade do |t|
+    t.string "name"
+    t.integer "expertise_id", null: false
+    t.integer "events_won"
+    t.string "calendar_url"
+    t.string "location_url"
+    t.text "description"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expertise_id"], name: "index_trainers_on_expertise_id"
+  end
+
+  add_foreign_key "appointments", "appointment_statuses"
+  add_foreign_key "appointments", "trainers"
+  add_foreign_key "trainers", "expertises"
 end

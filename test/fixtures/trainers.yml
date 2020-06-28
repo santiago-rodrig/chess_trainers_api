@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  expertise: one
+  events_won: 1
+  calendar_url: MyString
+  location_url: MyString
+
+two:
+  name: MyString
+  expertise: two
+  events_won: 1
+  calendar_url: MyString
+  location_url: MyString
