@@ -21,7 +21,7 @@ class AppointmentsController < ApplicationController
   def is_data_valid?(user_token, trainer_name)
     user = User.find_by(token: user_token)
     trainer = Trainer.find_by(name: trainer_name)
-    status = Appointment.find_by(name: 'pending')
+    status = AppointmentStatus.find_by(name: 'pending')
     user && trainer && { user: user, trainer: trainer, appointment_status: status }
   end
 end
