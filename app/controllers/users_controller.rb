@@ -28,6 +28,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    user = User.find_by(token: params[:token])
+    if user
+      user.update_attribute(:token, nil)
+    end
+    head :ok
+  end
+
   private
 
   def build_token(user)
