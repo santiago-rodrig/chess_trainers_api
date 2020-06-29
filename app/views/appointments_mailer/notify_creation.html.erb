@@ -1,5 +1,8 @@
-<h1>Your appointment with <%= @trainer %> has been set up!</h1>
+<h1>Your appointment with <%= @trainer.name %> has been set up!</h1>
 <p>
-  Your trainer, <%= @trainer %> has been notified and he'll contact
-  with you briefly.
+  Hi <%= @user.name %>!
+  Your trainer, <%= @trainer.name %> has been notified and you'll be
+  contacted briefly.
 </p>
+<h2>P.D.</h2>
+<p>The email of your trainer is <%= @trainer.email %>, don't get confused!</p>

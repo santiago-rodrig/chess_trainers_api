@@ -58,7 +58,7 @@ Trainer.create([
   }
 ])
 
-user = User.create(name: 'bob', password: '123456', password_confirmation: '123456')
+user = User.create(email: 'bob@example.com', name: 'bob', password: '123456', password_confirmation: '123456')
 
 Appointment.create([
   { trainer: Trainer.first, appointment_status: AppointmentStatus.find_by(name: 'pending'), user: user },
