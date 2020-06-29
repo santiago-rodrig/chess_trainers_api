@@ -1,7 +1,8 @@
 class AppointmentsController < ApplicationController
   def index
-    @appointments = Appointment.buffer(params[:number].to_i)
-    @last_group = @appointments.last == Appointment.last
+    user = User.find_by(token: get_token(request.headers['Authorization']))
+    @appointments = Appointment.buffer(params[:number].to_i, user)
+    @last_group = @appointments.last == Appointment.where(user: user).last
   end
 
   def create
@@ -18,6 +19,10 @@ class AppointmentsController < ApplicationController
   end
 
   private
+
+  def get_token(authorization)
+    authorization[7...]
+  end
 
   def is_data_valid?(user_token, trainer_name)
     user = User.find_by(token: user_token)
