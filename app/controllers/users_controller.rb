@@ -5,7 +5,6 @@ class UsersController < ApplicationController
       if !user.token
         user.update_attribute(:token, build_token(user))
       end
-      byebug
       render json: { token: user.token }, status: :ok
     else
       head :unauthorized
