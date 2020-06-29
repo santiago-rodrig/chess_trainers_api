@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+# environment varialbes
+gem 'dotenv-rails'
+# sendgrid
+gem 'sendgrid-ruby'
 # cors headers
 gem 'rack-cors'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
