@@ -7,6 +7,7 @@ class AppointmentsController < ApplicationController
   def create
     if data = is_data_valid?(params[:token], params[:trainer])
       if Appointment.create(data)
+        AppointmentsMailer.with(trainer: data[:trainer].name).notify_creation.deliver_later
         head :ok
       else
         head :internal_server_error
