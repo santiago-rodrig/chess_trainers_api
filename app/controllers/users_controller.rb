@@ -2,8 +2,11 @@ class UsersController < ApplicationController
   def login
     user = User.find_by(name: login_params[:name])
     if user && user.authenticate(login_params[:password])
-      token = user.token ? user.token : build_token(user)
-      render json: { token: token }, status: :ok
+      if !user.token
+        user.update_attribute(:token, build_token(user))
+      end
+      byebug
+      render json: { token: user.token }, status: :ok
     else
       head :unauthorized
     end
@@ -40,7 +43,6 @@ class UsersController < ApplicationController
 
   def build_token(user)
     token = Digest::SHA2.hexdigest(user.name.split('').shuffle.join(''))
-    user.update_attribute(:token, token)
     TokenCleanupJob.set(wait: 1.day).perform_later(user)
     token
   end
