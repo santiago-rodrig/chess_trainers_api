@@ -2,7 +2,6 @@ class AppointmentsController < ApplicationController
   def index
     user = User.find_by(token: get_token(request.headers['Authorization']))
     @appointments, @last_group = Appointment.buffer(params[:number].to_i, user)
-    byebug
   end
 
   def create
