@@ -16,7 +16,7 @@ Expertise.create([
 ])
 AppointmentStatus.create([
   { name: 'success' },
-  { name: 'fail' },
+  { name: 'failed' },
   { name: 'pending' }
 ])
 Trainer.create([
