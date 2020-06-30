@@ -4,15 +4,15 @@ class TrainersController < ApplicationController
       params[:number].to_i,
       params[:tname],
       params[:texpert],
-      params[:tintermediate]
+      params[:tintermediate],
+      params[:tamateur]
     )
 
     @last_group = Trainer.filtered(
       params[:tname],
       params[:texpert],
-      params[:tintermediate]
+      params[:tintermediate],
+      params[:tamateur]
     ).last == @trainers.last
-
-    byebug
   end
 end

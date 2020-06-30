@@ -5,40 +5,48 @@ class Trainer < ApplicationRecord
   scope :filtered, -> (
     name_filter,
     expertFilter,
-    intermediateFilter
+    intermediateFilter,
+    amateurFilter
   ) do
     data = where("name LIKE ?", "%#{name_filter}%")
+    expert = Expertise.find_by(name: 'expert')
+    intermediate = Expertise.find_by(name: 'intermediate')
+    amateur = Expertise.find_by(name: 'amateur')
 
     case expertFilter
     when '1'
       case intermediateFilter
       when '1'
-        data = data.where(
-          expertise: Expertise.find_by(name: 'expert')
-        ).or(data.where(
-          expertise: Expertise.find_by(name: 'intermediate')
-        ))
+        case amateurFilter
+        when '1'
+          # do nothing
+        when '0'
+          data = data.where.not(expertise: amateur)
+        end
       when '0'
-        data = data.where(
-          expertise: Expertise.find_by(name: 'expert')
-        ).or(data.where.not(
-          expertise: Expertise.find_by(name: 'intermediate')
-        ))
+        case amateurFilter
+        when '1'
+          data = data.where.not(expertise: intermediate)
+        when '0'
+          data = data.where(expertise: expert)
+        end
       end
     when '0'
       case intermediateFilter
       when '1'
-        data = data.where.not(
-          expertise: Expertise.find_by(name: 'expert')
-        ).or(data.where(
-          expertise: Expertise.find_by(name: 'intermediate')
-        ))
+        case amateurFilter
+        when '1'
+          data = data.where.not(expertise: expert)
+        when '0'
+          data = data.where(expertise: intermediate)
+        end
       when '0'
-        data = data.where.not(
-          expertise: Expertise.find_by(name: 'expert')
-        ).or(data.where.not(
-          expertise: Expertise.find_by(name: 'intermediate')
-        ))
+        case amateurFilter
+        when '1'
+          data = data.where(expertise: amateur)
+        when '0'
+          data = data.where(id: nil)
+        end
       end
     end
 
@@ -49,12 +57,14 @@ class Trainer < ApplicationRecord
     number,
     name_filter,
     expertFilter,
-    intermediateFilter
+    intermediateFilter,
+    amateurFilter
   ) do
       filtered(
         name_filter,
         expertFilter,
-        intermediateFilter
+        intermediateFilter,
+        amateurFilter
       ).offset(number * 3).first(3)
   end
 
