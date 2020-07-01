@@ -5,16 +5,16 @@ class UsersController < ApplicationController
       if !user.token
         user.update_attribute(:token, build_token(user))
       end
-      render json: { token: user.token }, status: :ok
+      render json: { token: user.token, username: user.name }, status: :ok
     else
       head :unauthorized
     end
   end
 
   def logged_in
-    answer = User.find_by(token: params[:token])
+    answer = User.find_by(token: request.headers[:Authorization][7...])
     if answer
-      head :ok
+      render json: { username: answer.name }, status: :ok
     else
       head :unauthorized
     end
