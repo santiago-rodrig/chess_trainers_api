@@ -4,7 +4,8 @@ class AppointmentsController < ApplicationController
     @appointments, @last_group = Appointment.buffer(
       params[:number].to_i,
       user,
-      tname: params[:tname]
+      tname: params[:tname],
+      status: params[:status]
     )
   end
 
