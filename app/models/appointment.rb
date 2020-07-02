@@ -39,6 +39,8 @@ class Appointment < ApplicationRecord
     success_data = data.where(appointment_status: success).order('created_at DESC').to_a
     failed_data = data.where(appointment_status: failed).order('created_at DESC').to_a
     data = pending_data + success_data + failed_data
-    [data[(4 * number), 4], failed_data[-1] == data[(4 * number), 4][-1]]
+    collection = data[(4 * number), 4]
+    last_group = collection.any? { |appointment| data.reverse[0, 4].include?(appointment) }
+    [collection, last_group]
   }
 end
