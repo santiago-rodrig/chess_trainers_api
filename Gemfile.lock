@@ -100,6 +100,7 @@ GEM
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
+    pg (0.21.0)
     puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
@@ -184,6 +185,7 @@ DEPENDENCIES
   hirb
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  pg (~> 0.18)
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)
