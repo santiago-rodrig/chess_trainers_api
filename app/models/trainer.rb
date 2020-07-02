@@ -2,73 +2,44 @@ class Trainer < ApplicationRecord
   belongs_to :expertise
   has_many :appointments
 
-  scope :filtered, -> (
-    name_filter,
-    expertFilter,
-    intermediateFilter,
-    amateurFilter
-  ) do
-    data = where("name LIKE ?", "%#{name_filter}%")
+  scope :filtered, lambda { |name_filter, expert_filter, intermediate_filter, amateur_filter|
+    data = where('name LIKE ?', "%#{name_filter}%")
     expert = Expertise.find_by(name: 'expert')
     intermediate = Expertise.find_by(name: 'intermediate')
     amateur = Expertise.find_by(name: 'amateur')
+    test_case = expert_filter + intermediate_filter + amateur_filter
+    test_case = test_case.to_i(2)
 
-    case expertFilter
-    when '1'
-      case intermediateFilter
-      when '1'
-        case amateurFilter
-        when '1'
-          # do nothing
-        when '0'
-          data = data.where.not(expertise: amateur)
-        end
-      when '0'
-        case amateurFilter
-        when '1'
-          data = data.where.not(expertise: intermediate)
-        when '0'
-          data = data.where(expertise: expert)
-        end
-      end
-    when '0'
-      case intermediateFilter
-      when '1'
-        case amateurFilter
-        when '1'
-          data = data.where.not(expertise: expert)
-        when '0'
-          data = data.where(expertise: intermediate)
-        end
-      when '0'
-        case amateurFilter
-        when '1'
-          data = data.where(expertise: amateur)
-        when '0'
-          data = data.where(id: nil)
-        end
-      end
+    case test_case
+    when 6
+      data = data.where.not(expertise: amateur)
+    when 5
+      data = data.where.not(expertise: intermediate)
+    when 4
+      data = data.where(expertise: expert)
+    when 3
+      data = data.where.not(expertise: expert)
+    when 2
+      data = data.where(expertise: intermediate)
+    when 1
+      data = data.where(expertise: amateur)
+    when 0
+      data = data.where(id: nil)
     end
 
     data.order('events_won DESC')
-  end
+  }
 
-  scope :buffer, -> (
-    number,
-    name_filter,
-    expertFilter,
-    intermediateFilter,
-    amateurFilter
-  ) do
-      filtered(
-        name_filter,
-        expertFilter,
-        intermediateFilter,
-        amateurFilter
-      ).offset(number * 3).first(3)
-  end
+  scope :buffer, lambda { |number, name_filter, expert_filter, intermediate_filter, amateur_filter|
+    filtered(
+      name_filter,
+      expert_filter,
+      intermediate_filter,
+      amateur_filter
+    ).offset(number * 3).first(3)
+  }
 
   def hashed_email
-    Digest::MD5.hexdigest(self.email)
+    Digest::MD5.hexdigest(email)
   end
 end

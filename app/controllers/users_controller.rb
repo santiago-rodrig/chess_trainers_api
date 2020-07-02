@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
   def login
     user = User.find_by(name: login_params[:name])
-    if user && user.authenticate(login_params[:password])
-      if !user.token
-        user.update_attribute(:token, build_token(user))
-      end
+    if user&.authenticate(login_params[:password])
+      user.update_attribute(:token, build_token(user)) unless user.token
       render json: { token: user.token, username: user.name }, status: :ok
     else
       head :unauthorized
@@ -43,7 +41,7 @@ class UsersController < ApplicationController
       password_confirmation: params[:password_confirmation]
     }
 
-    if user && user.authenticate(current_password)
+    if user&.authenticate(current_password)
       if user.update(data)
         render json: { username: user.name }, status: :ok
       else
@@ -66,9 +64,7 @@ class UsersController < ApplicationController
 
   def logout
     user = User.find_by(token: params[:token])
-    if user
-      user.update_attribute(:token, nil)
-    end
+    user&.update_attribute(:token, nil)
     head :ok
   end
 
