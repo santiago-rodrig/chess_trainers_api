@@ -4,7 +4,7 @@ class Trainer < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 3, maximum: 50 }
   validates :events_won, numericality: { greater_than_or_equal_to: 0 }
-  validates :calendar_url, :location_url, format: { with: URI.regexp }, uniqueness: true
+  validates :calendar_url, :location_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
 
   scope :filtered, lambda { |name_filter, expert_filter, intermediate_filter, amateur_filter|

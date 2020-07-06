@@ -1,35 +1,35 @@
 require 'test_helper'
 
 class ExpertiseTest < ActiveSupport::TestCase
-	setup do
-		@expertise = Expertise.new(name: 'amateur')
-	end
+  setup do
+    @expertise = Expertise.new(name: 'amateur')
+  end
 
-	test 'nothing wrong with valid data' do
-		assert @expertise.valid?
-	end
+  test 'nothing wrong with valid data' do
+    assert @expertise.valid?
+  end
 
   test 'name must be present' do
-		@expertise.name = nil
+    @expertise.name = nil
 
-		assert @expertise.invalid?  	
+    assert @expertise.invalid?
   end
 
   test 'name length must greater than 2' do
-  	@expertise.name = 'aa'
+    @expertise.name = 'aa'
 
-  	assert @expertise.invalid?
+    assert @expertise.invalid?
   end
 
   test 'name lenght must be less than 21' do
-  	@expertise.name = 'a' * 21
+    @expertise.name = 'a' * 21
 
-  	assert @expertise.invalid?
+    assert @expertise.invalid?
   end
 
   test 'name must be unique' do
-  	@expertise.name = expertises(:one).name
+    @expertise.name = expertises(:one).name
 
-  	assert @expertise.invalid?
+    assert @expertise.invalid?
   end
 end

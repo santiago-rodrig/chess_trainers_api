@@ -8,6 +8,7 @@ AllCops:
     - "node_modules/**/*"
 
   DisplayCopNames: true
+  DisabledByDefault: true
 
 Layout/LineLength:
   Max: 120
