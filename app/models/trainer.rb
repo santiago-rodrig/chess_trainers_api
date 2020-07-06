@@ -9,10 +9,10 @@ class Trainer < ApplicationRecord
 
   scope :filtered, lambda { |name_filter, expert_filter, intermediate_filter, amateur_filter|
     data = where('name LIKE ?', "%#{name_filter}%")
-    expert = Expertise.find_by(name: 'expert')
-    intermediate = Expertise.find_by(name: 'intermediate')
-    amateur = Expertise.find_by(name: 'amateur')
-    test_case = expert_filter + intermediate_filter + amateur_filter
+    expert = Expertise.find_by(name: 'expert') || []
+    intermediate = Expertise.find_by(name: 'intermediate') || []
+    amateur = Expertise.find_by(name: 'amateur') || []
+    test_case = (expert_filter || '1') + (intermediate_filter || '1') + (amateur_filter || '1')
     test_case = test_case.to_i(2)
 
     case test_case
