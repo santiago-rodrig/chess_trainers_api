@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def login
     user = User.find_by(name: login_params[:name])
+
     if user&.authenticate(login_params[:password])
       user.update_attribute(:token, build_token(user)) unless user.token
       render json: { token: user.token, username: user.name }, status: :ok
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
 
   def logged_in
     answer = User.find_by(token: request.headers[:Authorization][7...])
+
     if answer
       render json: { username: answer.name }, status: :ok
     else

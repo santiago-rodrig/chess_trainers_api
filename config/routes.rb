@@ -8,5 +8,4 @@ Rails.application.routes.draw do
   delete 'logout', to: 'users#logout', default: { format: 'json' }
   get 'user', to: 'users#show', default: { format: 'json' }
   put 'users/update', to: 'users#update', default: { format: 'json' }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -48,6 +48,12 @@ class UserTest < ActiveSupport::TestCase
     assert @user.invalid?
   end
 
+  test 'token is not present' do
+    @user.token = nil
+
+    assert @user.valid?
+  end
+
   test 'token is present and is a SHA256 hash' do
     @user.token = Digest::SHA2.hexdigest('randomness')
 
