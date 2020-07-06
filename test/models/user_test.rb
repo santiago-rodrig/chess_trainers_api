@@ -29,9 +29,8 @@ class UserTest < ActiveSupport::TestCase
   	assert @user.invalid?
   end
 
-  test 'name must be unique' do
-  	other_user = users(:two)
-  	@user.name = other_user.name
+  test 'email must be present' do
+  	@user.email = nil
 
   	assert @user.invalid?
   end
