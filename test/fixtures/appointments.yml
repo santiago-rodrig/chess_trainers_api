@@ -2,8 +2,10 @@
 
 one:
   trainer: one
-  appointment_status: one
+  user: one
+  appointment_status: pending
 
 two:
   trainer: two
-  appointment_status: two
+  user: two
+  appointment_status: success

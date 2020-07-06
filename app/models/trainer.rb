@@ -2,6 +2,11 @@ class Trainer < ApplicationRecord
   belongs_to :expertise
   has_many :appointments
 
+  validates :name, presence: true, length: { minimum: 3, maximum: 50 }
+  validates :events_won, numericality: { greater_than_or_equal_to: 0 }
+  validates :calendar_url, :location_url, format: { with: URI.regexp }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
   scope :filtered, lambda { |name_filter, expert_filter, intermediate_filter, amateur_filter|
     data = where('name LIKE ?', "%#{name_filter}%")
     expert = Expertise.find_by(name: 'expert')
