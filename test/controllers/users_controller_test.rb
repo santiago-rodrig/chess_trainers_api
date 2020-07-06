@@ -65,13 +65,33 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test 'create user valid data no problem' do
     assert_difference 'User.count' do
-      post '/users.json', params: { user: { name: 'gustav', email: 'gustav.rocks@example.org', password: 'ultrasecret', password_confirmation: 'ultrasecret' } }      
+      post(
+        '/users.json',
+        params: {
+          user: {
+            name: 'gustav',
+            email: 'gustav.rocks@example.org',
+            password: 'ultrasecret',
+            password_confirmation: 'ultrasecret'
+          }
+        }
+      )
     end
   end
 
   test 'create user invalid data problem' do
     assert_no_difference 'User.count' do
-      post '/users.json', params: { user: { name: 'gustav', email: 'gustav.rocks@example.org', password: 'ultrasecret', password_confirmation: 'ultrasecret0' } }      
+      post(
+        '/users.json',
+        params: {
+          user: {
+            name: 'gustav',
+            email: 'gustav.rocks@example.org',
+            password: 'ultrasecret',
+            password_confirmation: 'ultrasecreto'
+          }
+        }
+      )
     end
   end
 
@@ -87,7 +107,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'update valid current password' do
     post '/login.json', params: { credentials: { name: 'john', password: 'randomness' } }
     @user.reload
-    put '/users/update.json', params: { username: 'johny', email: @user.email, password: '', password_confirmation: '', current_password: 'randomness' }, headers: { Authorization: "Bearer #{@user.token}" }
+
+    put(
+      '/users/update.json',
+      params: {
+        username: 'johny',
+        email: @user.email,
+        password: '',
+        password_confirmation: '',
+        current_password: 'randomness'
+      },
+      headers: { Authorization: "Bearer #{@user.token}" }
+    )
+
     @user.reload
 
     assert_equal 'johny', @user.name    
@@ -96,7 +128,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'update invalid current password' do
     post '/login.json', params: { credentials: { name: 'john', password: 'randomness' } }
     @user.reload
-    put '/users/update.json', params: { username: 'johny', email: @user.email, password: '', password_confirmation: '', current_password: 'wadayouwant' }, headers: { Authorization: "Bearer #{@user.token}" }
+
+    put(
+      '/users/update.json',
+      params: {
+        username: 'johny',
+        email: @user.email,
+        password: '',
+        password_confirmation: '',
+        current_password: 'wadayawant'
+      },
+      headers: { Authorization: "Bearer #{@user.token}" }
+    )
+
     @user.reload
 
 

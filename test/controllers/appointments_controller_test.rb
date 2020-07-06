@@ -9,14 +9,22 @@ class AppointmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'index returns at most 4 appointments' do
-    get "/appointments/group/0.json?tname=#{@trainer.name}&status=111", headers: { Authorization: "Bearer #{@user.token}" }
+    get(
+      "/appointments/group/0.json?tname=#{@trainer.name}&status=111",
+      headers: { Authorization: "Bearer #{@user.token}" }
+    )
+
     data = JSON.parse(response.body, object_class: OpenStruct)
 
     assert data.appointments.size <= 4
   end
 
   test 'index sets last group accordingly' do
-    get "/appointments/group/0.json?tname=#{@trainer.name}&status=111", headers: { Authorization: "Bearer #{@user.token}" }
+    get(
+      "/appointments/group/0.json?tname=#{@trainer.name}&status=111",
+      headers: { Authorization: "Bearer #{@user.token}" }
+    )
+
     data = JSON.parse(response.body, object_class: OpenStruct)
 
     assert data.last_group
