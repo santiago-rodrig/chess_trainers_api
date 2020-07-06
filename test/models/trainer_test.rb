@@ -59,4 +59,16 @@ class TrainerTest < ActiveSupport::TestCase
 
   	assert @trainer.invalid?
   end
+
+  test 'email must be unique' do
+    @trainer.email = trainers(:one).email
+
+    assert @trainer.invalid?
+  end
+
+  test 'calendar url must be unique' do
+    @trainer.calendar_url = trainers(:two).calendar_url
+
+    assert @trainer.invalid?
+  end
 end
