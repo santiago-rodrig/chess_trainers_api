@@ -1,9 +1,17 @@
+<!-- README.md -->
+
 # Chess Trainers API
 
 This is the backend of a Chess Trainers site, where each client has
 appointments with professional chess players, each chess trainer
 publish its schedule and meeting places and clients can decide
-whether to schedule a meeting the a trainer or not.
+whether to schedule a meeting with the a trainer or not.
+
+## Data diagrams
+
+There is a PDF document with the [data diagrams](./doc/diagrams.pdf), feel free
+to take a look if you want to understand the general idea of how the backend
+operates.
 
 ## Requirements
 
@@ -31,8 +39,8 @@ Install the dependencies.
 bundle install
 ```
 
-Now you are ready for development! Fire up the local web server with `rails server` and
-send some requests in JSON format.
+Now you are ready for development! Fire up the local web server with
+`rails server` and send some requests in JSON format.
 
 ## License
 
@@ -47,3 +55,4 @@ You can reach out to me through the following URLs.
 - [LinkedIn](https://www.linkedin.com/in/santiago-andres-rodriguez-marquez/)
 - [AngelList](https://angel.co/u/santiago-andres-rodriguez-marquez)
 - [santo1996.29@gmail.com](mailto:santo1996.29@gmail.com)
+
