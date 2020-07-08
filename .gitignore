@@ -30,3 +30,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+sendgrid.env
+
+# vim backup files
+*.swp
+*.swo

@@ -1,24 +1,58 @@
-# README
+<!-- README.md -->
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Chess Trainers API
 
-Things you may want to cover:
+This is the backend of a Chess Trainers site, where each client has
+appointments with professional chess players, each chess trainer
+publish its schedule and meeting places and clients can decide
+whether to schedule a meeting with the a trainer or not.
 
-* Ruby version
+## Data diagrams
 
-* System dependencies
+There is a PDF document with the [data diagrams](./doc/diagrams.pdf), feel free
+to take a look if you want to understand the general idea of how the backend
+operates.
 
-* Configuration
+## Requirements
 
-* Database creation
+- rails ~> 6.0.3
+- ruby ~> 2.6
+- bundler ~> 2.1.4
 
-* Database initialization
+## Setup
 
-* How to run the test suite
+Clone the repository.
 
-* Services (job queues, cache servers, search engines, etc.)
+```zsh
+git clone https://github.com/santiago-rodrig/chess_trainers_api
+```
 
-* Deployment instructions
+Change you current directory to that of the repository.
 
-* ...
+```zsh
+cd chess_trainers_api
+```
+
+Install the dependencies.
+
+```zsh
+bundle install
+```
+
+Now you are ready for development! Fire up the local web server with
+`rails server` and send some requests in JSON format.
+
+## License
+
+This project is MIT licensed, you can read the license [here](./LICENSE).
+
+## Contact
+
+You can reach out to me through the following URLs.
+
+- [My website](https://santiagorodriguez.dev)
+- [Github](https://github.com/santiago-rodrig)
+- [LinkedIn](https://www.linkedin.com/in/santiago-andres-rodriguez-marquez/)
+- [AngelList](https://angel.co/u/santiago-andres-rodriguez-marquez)
+- [santo1996.29@gmail.com](mailto:santo1996.29@gmail.com)
+
