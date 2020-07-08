@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: bob
+  expertise: one
+  events_won: 8
+  email: example.98@cool.org
+  calendar_url: https://calendar.google.com/calendar?cid=c2FudG8xOTk2LjI5QGdtYWlsLmNvbQ
+  location_url: https://goo.gl/maps/KX6ckcghfubFoMjG8
+
+two:
+  name: sarah
+  expertise: two
+  events_won: 5
+  email: sarah.awesome@example.net
+  calendar_url: https://calendar.google.com/calendar?cid=YTV1NXVidDMzZjRkMnFnOGRqMGwwdGljZmdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ
+  location_url: https://goo.gl/maps/KX6ckcghfubFoMjG8
